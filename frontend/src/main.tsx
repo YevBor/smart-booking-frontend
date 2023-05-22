@@ -5,7 +5,8 @@ import Root from './pages/Root'
 import { CssBaseline } from '@mui/material'
 import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
-
+import  Dashboard  from './pages/Dashboard'
+import Forgot from './pages/Forgot'
 const router = createBrowserRouter([
   {path: '/',
   element: <Root/>,
@@ -16,6 +17,13 @@ const router = createBrowserRouter([
   },
   {path: '/sign-in',
   element: <SignIn/>,
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard/>,
+  },
+  { path: '/forgot',
+  element: <Forgot/>,
   }
 ])
 
