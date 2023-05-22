@@ -1,7 +1,9 @@
 import { Box, Button, Card } from '@mui/material'
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Root = () => {
+  const navigate = useNavigate();
   return (
     <Box sx={{display:"flex",
     justifyContent:'center',
@@ -11,8 +13,8 @@ const Root = () => {
     }}  >
         <h1>Smart Booking</h1>
         <Box>
-            <Button variant="contained">sign up</Button>
-            <Button variant="contained">sign in</Button>
+            <Button variant="contained" onClick={()=> navigate('/sign-up')} sx={{m: 1}}>sign up</Button>
+            <Button variant="contained" onClick={()=> navigate('/sign-in')}>sign in</Button>
         </Box>
     </Box>
   )
