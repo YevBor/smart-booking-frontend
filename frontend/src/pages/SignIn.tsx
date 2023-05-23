@@ -1,13 +1,17 @@
-import { TextField, Box, Container, Card, Button } from '@mui/material';
+import { TextField, Box, Container, Card, Button, CircularProgress } from '@mui/material';
 import ButtonForm from '../components/modalFormComponents/ButtonForm';
 import Title from '../components/modalFormComponents/Title';
 import { sxCard } from '../styles/modalStyles';
 import { useFormik } from 'formik';
-import { registerUser } from '../auth/authService';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { signInUser } from '../auth/authService';
 import CommonLink from '../components/modalFormComponents/CommonLink';
+import {signInStart, signInSuccess, signInFailure, signOut} from '../store/signin'
+import { useDispatch } from 'react-redux';
+
+
+
 
 const validationSchema = yup.object({
   email: yup
@@ -22,7 +26,7 @@ const validationSchema = yup.object({
 
 export default function SignUp() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -31,12 +35,15 @@ export default function SignUp() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      dispatch(signInStart())
       try {
         const response = await signInUser(values);
         console.log(response);
         navigate('/dashboard')
+        dispatch(signInSuccess(response))
       } catch (error) {
         console.log(error);
+        dispatch(signInFailure(error))
       }
     },
   });
