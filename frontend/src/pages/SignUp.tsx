@@ -43,7 +43,7 @@ export default function SignUp() {
   return (
     <Container component="main" maxWidth="xs">
       <Card sx={sxCard}>
-        <Title text="Sign Up" />
+        <Title text="Registrate Form" />
         <Box component="form" noValidate onSubmit={formik.handleSubmit}>
           <TextField
             size="small"
@@ -72,7 +72,7 @@ export default function SignUp() {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <ButtonForm text="Sign Up" />
+          <ButtonForm text="Registrate" />
         </Box>
       </Card>
     </Container>

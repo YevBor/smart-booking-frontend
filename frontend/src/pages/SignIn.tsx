@@ -51,7 +51,7 @@ export default function SignUp() {
   return (
     <Container component="main" maxWidth="xs">
       <Card sx={sxCard}>
-        <Title text="Sign In" />
+        <Title text="Log In" />
         <Box component="form" noValidate onSubmit={formik.handleSubmit}>
           <TextField
             size="small"
@@ -80,7 +80,7 @@ export default function SignUp() {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <ButtonForm text="Sign In" />
+          <ButtonForm text="Log In" />
           <CommonLink url="/forgot" text="forgot password" />
         </Box>
       </Card>

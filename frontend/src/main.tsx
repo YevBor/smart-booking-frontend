@@ -9,25 +9,26 @@ import  Dashboard  from './pages/Dashboard'
 import Forgot from './pages/Forgot'
 import { Provider } from 'react-redux'
 import store from './store/index'
+import { PageWrapper } from './components/pageWrapper/PageWrapper'
 
 
 const router = createBrowserRouter([
   {path: '/',
-  element: <Root/>,
+  element: <PageWrapper><Root/> </PageWrapper>,
   
   },
   {path: '/sign-up',
-  element: <SignUp/>,
+  element: <PageWrapper><SignUp/> </PageWrapper>,
   },
   {path: '/sign-in',
-  element: <SignIn/>,
+  element: <PageWrapper><SignIn/> </PageWrapper>,
   },
   {
     path: '/dashboard',
-    element: <Dashboard/>,
+    element: <PageWrapper><Dashboard/> </PageWrapper>,
   },
   { path: '/forgot',
-  element: <Forgot/>,
+  element: <PageWrapper><Forgot/> </PageWrapper>,
   }
 ])
 
