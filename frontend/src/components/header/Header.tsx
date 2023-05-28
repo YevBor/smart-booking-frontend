@@ -13,7 +13,6 @@ import { Profile } from '../profile/Profile';
 export const Header = ()=> {
     const navigate = useNavigate()
     const isLogin = useSelector((state:any) => state.signin.isAuthenticated)
-    console.log(isLogin)
     return (
         <>
                <Box sx={{ flexGrow: 1 }}>

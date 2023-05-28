@@ -33,7 +33,7 @@ export default function SignUp() {
       try {
         const response = await registerUser(values);
         console.log(response);
-        navigate('/dashboard')
+        navigate('/sign-in')
       } catch (error) {
         console.log(error);
       }

@@ -10,6 +10,7 @@ import Forgot from './pages/Forgot'
 import { Provider } from 'react-redux'
 import store from './store/index'
 import { PageWrapper } from './components/pageWrapper/PageWrapper'
+import { ProtectedRoute } from './components/protectedRoute/ProtectedRoute'
 
 
 const router = createBrowserRouter([
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <PageWrapper><Dashboard/> </PageWrapper>,
+    element: <PageWrapper><ProtectedRoute><Dashboard/></ProtectedRoute></PageWrapper>,
   },
   { path: '/forgot',
   element: <PageWrapper><Forgot/> </PageWrapper>,

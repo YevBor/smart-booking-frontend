@@ -28,7 +28,6 @@ export const WorkingHours = () => {
     startDate: null,
   });
   const  handleSubmit = async () => {
-    console.log(hoursForm);
     const postHours = {
         openingHours: hoursForm.openingHours?.format('HH:mm'),
         closingHours: hoursForm.closingHours?.format('HH:mm'),
@@ -37,7 +36,7 @@ export const WorkingHours = () => {
         startDate: hoursForm.startDate?.format('YYYY-MM-DD'),
     }
     console.log(postHours)
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIwLCJlbWFpbCI6InRlc3RCQHRlc3QuY29tIiwicm9sZSI6ImJ1c2luZXNzIiwiaWF0IjoxNjg1MTI2MDYzLCJleHAiOjE2ODg3MjYwNjMsImF1ZCI6ImxvY2FsaG9zdDo0MDAwIiwiaXNzIjoibG9jYWxob3N0OjQwMDAifQ.6AOZUPKpT-WyfnTxeKyaKJ05o97ur4ntya90B_dC4ls'
+    const token = localStorage.getItem('token')
     const response = await fetch('http://localhost:4000/slots/daily', {
         method: 'POST',
         headers: {
@@ -48,11 +47,10 @@ export const WorkingHours = () => {
     })
     if(!response.ok){
         console.log('error')}
-        
-        else{
-            const data = response.json();
+    else{
+            const data = await response.json();
             console.log(data)
-        }   
+        }
   }
 
 

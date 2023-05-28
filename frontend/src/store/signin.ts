@@ -33,7 +33,7 @@ const signInSlice = createSlice({
             state.loading = false;
             state.user = null;
             state.error = null;
-        }
+        },
     }    
 
 })
