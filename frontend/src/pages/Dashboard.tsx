@@ -1,5 +1,5 @@
+import {Calendar} from '../components/UI/calendar';
 import { WorkingHours } from '../components/workingHours/WorkingHours';
-import Calendar from "../calendar/calendar.tsx";
 
 const Dashboard = () => {
     return (
