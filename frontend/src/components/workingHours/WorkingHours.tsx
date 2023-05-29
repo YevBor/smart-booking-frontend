@@ -57,7 +57,7 @@ export const WorkingHours = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="he">
-      <Box sx={{display:"flex",flexDirection: 'column', width:300,height: 300}}>
+      <Box sx={{display:"flex",flexDirection: 'column',justifyContent:"space-between" ,width:400,height: 350, m:'auto'}}>
         <Typography variant="h3">Working Hours</Typography>
         <TimeField
             size='small'
