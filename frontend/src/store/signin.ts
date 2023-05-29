@@ -20,6 +20,7 @@ const signInSlice = createSlice({
         signInSuccess: (state, action) => {
             state.isAuthenticated = true;
             state.loading = false;
+            console.log(action.payload)
             state.user = action.payload; // user data
             state.error = null;
         },

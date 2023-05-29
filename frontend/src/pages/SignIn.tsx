@@ -38,7 +38,6 @@ export default function SignUp() {
       dispatch(signInStart())
       try {
         const response = await signInUser(values);
-        console.log(response);
         navigate('/dashboard')
         dispatch(signInSuccess(response))
       } catch (error) {
