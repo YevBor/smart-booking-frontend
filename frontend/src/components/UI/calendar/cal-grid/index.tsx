@@ -1,5 +1,38 @@
 import styled from "styled-components";
 import {FC} from "react";
+import { isSameDay } from 'date-fns'
+
+const CalGrid:FC<{daysArray:Date[]}> = ({daysArray}) => {
+	const isCurrentDay = (day: Date): boolean => isSameDay(day, new Date())
+
+	return (
+		<GridWrapper>
+			{daysArray.map((dayItem: Date ,i:number)=>{
+				return (
+					<CellWrapper key={i} isWeekend={dayItem.getDay() == 5 || dayItem.getDay() == 6}>
+						<RowInCell>
+							<DayWrapper>
+								{!isCurrentDay(dayItem) && dayItem.getDate()}
+								{isCurrentDay(dayItem) &&(<CurrentDay>{dayItem.getDate()}</CurrentDay>)}
+							</DayWrapper>
+						</RowInCell>
+					</CellWrapper>
+				)
+			})}
+		</GridWrapper>
+	);
+};
+
+export default CalGrid;
+const CurrentDay = styled.div`
+  height: 80%;
+  width: 80%;
+  background-color: #f00;
+  border-radius: 50%;	  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -26,24 +59,5 @@ const DayWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 2px;
 `
-const CalGrid:FC<{daysArray:Date[]}> = ({daysArray}) => {
-
-	return (
-		<GridWrapper>
-			{daysArray.map((dayItem: Date ,i:number)=>{
-				return (
-					<CellWrapper key={i} isWeekend={dayItem.getDay() == 5 || dayItem.getDay() == 6}>
-						<RowInCell>
-							<DayWrapper>
-								{dayItem.getDate()}
-							</DayWrapper>
-						</RowInCell>
-					</CellWrapper>
-				)
-			})}
-		</GridWrapper>
-	);
-};
-
-export default CalGrid;
