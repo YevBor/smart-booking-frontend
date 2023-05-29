@@ -1,6 +1,5 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { signInSuccess } from '../../store/signin';
 
 export const ProtectedRoute = ({ children }: any) => {
@@ -15,11 +14,10 @@ export const ProtectedRoute = ({ children }: any) => {
   const isAuthenticated = useSelector(
     (state: any) => state.signin.isAuthenticated
   );
-  const location = useLocation();
   console.log(isAuthenticated);
   return isAuthenticated ? (
     children
   ) : (
-    <Navigate to={{ pathname: '/sign-in', state: { from: location } }} />
+    <Navigate to={{ pathname: '/sign-in' }} />
   );
 };
