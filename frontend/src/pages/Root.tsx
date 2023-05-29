@@ -1,6 +1,4 @@
-import { Box, Button, Card } from '@mui/material'
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Box } from '@mui/material'
 
 const Root = () => {
   return (

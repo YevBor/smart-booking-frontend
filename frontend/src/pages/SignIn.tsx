@@ -1,4 +1,4 @@
-import { TextField, Box, Container, Card, Button, CircularProgress } from '@mui/material';
+import { TextField, Box, Container, Card } from '@mui/material';
 import ButtonForm from '../components/modalFormComponents/ButtonForm';
 import Title from '../components/modalFormComponents/Title';
 import { sxCard } from '../styles/modalStyles';
@@ -7,9 +7,9 @@ import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { signInUser } from '../auth/authService';
 import CommonLink from '../components/modalFormComponents/CommonLink';
-import {signInStart, signInSuccess, signInFailure, signOut} from '../store/signin'
+import {signInStart, signInSuccess, signInFailure} from '../store/signin'
 import { useDispatch } from 'react-redux';
- 
+
 
 
 

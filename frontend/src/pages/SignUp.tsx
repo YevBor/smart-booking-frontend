@@ -1,11 +1,10 @@
-import { TextField, Box, Container, Card, Button } from '@mui/material';
+import { TextField, Box, Container, Card } from '@mui/material';
 import ButtonForm from '../components/modalFormComponents/ButtonForm';
 import Title from '../components/modalFormComponents/Title';
 import { sxCard } from '../styles/modalStyles';
 import { useFormik } from 'formik';
 import { registerUser } from '../auth/authService';
 import * as yup from 'yup';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const validationSchema = yup.object({

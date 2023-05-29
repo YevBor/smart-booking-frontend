@@ -1,12 +1,16 @@
-import React from 'react'
-import {WorkingHours} from '../components/workingHours/WorkingHours'
+import { WorkingHours } from '../components/workingHours/WorkingHours';
+import Calendar from "../calendar/calendar.tsx";
 
 const Dashboard = () => {
-  return (
-    <>
-      <WorkingHours/>
-    </>
-  )
+    return (
+        <>
+            <WorkingHours />
+            <div className="container">
+                <Calendar/>
+            </div>
+
+        </>
+    );
 }
 
-export default Dashboard
+export default Dashboard;
