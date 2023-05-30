@@ -1,7 +1,7 @@
 import CalHeader from "./cal-header";
 import CalMonitor from "./cal-monitor";
 import CalGrid from "./cal-grid";
-import moment from "moment";
+import moment from 'moment';
 import styled from "styled-components";
 import {FC, useEffect, useState} from "react";
 
@@ -51,7 +51,7 @@ const Calendar:FC = () => {
 export default Calendar;
 
 const CalendarWrapper = styled.div`
-  margin-top: 70px; 
+  margin-top: 15px; 
   margin-bottom: 70px;
   border-radius: 8px;
   overflow: hidden;

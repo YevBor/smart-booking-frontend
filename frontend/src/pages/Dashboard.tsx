@@ -4,7 +4,7 @@ import { WorkingHours } from '../components/workingHours/WorkingHours';
 const Dashboard = () => {
     return (
         <>
-            <WorkingHours />
+            {/*<WorkingHours />*/}
             <Calendar/>
         </>
     );

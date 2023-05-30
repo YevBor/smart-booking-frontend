@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import {FC} from "react";
 
-const CalHeader = () => {
+const CalHeader:FC = () => {
 	return (
 		<DivWrapper>
 		</DivWrapper>

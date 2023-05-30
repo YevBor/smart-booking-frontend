@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FC } from "react";
 import moment from "moment";
 
-const CalGrid:FC<{startDay: moment.Moment,today:any,totalDays:number}> = ({startDay,today,totalDays}) => {
+const CalGrid:FC<CalGrid> = ({startDay,today,totalDays}) => {
 
 	const day = startDay.clone().subtract(1, 'day');
 	const daysMap = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
@@ -46,6 +46,11 @@ const CalGrid:FC<{startDay: moment.Moment,today:any,totalDays:number}> = ({start
 };
 
 export default CalGrid;
+interface CalGrid {
+	startDay: moment.Moment,
+	today:any,
+	totalDays:number
+}
 const CurrentDay = styled.div`
   height: 80%;
   width: 80%;
