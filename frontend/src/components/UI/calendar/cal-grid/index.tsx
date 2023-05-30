@@ -14,7 +14,7 @@ const CalGrid:FC<{startDay: moment.Moment,today:any}> = ({startDay,today}) => {
 			<GridWrapper isHeader={true}>
 				{
 					[...Array(7)].map((_, i) => (
-						<CellWrapper isHeader key={i}>
+						<CellWrapper isHeader key={i} isSelectedMonth={today}>
 							<RowInCell justifyContent={'flex-end'} pr={1}>
 								{moment().day(i).format('ddd')}
 							</RowInCell>
@@ -22,6 +22,7 @@ const CalGrid:FC<{startDay: moment.Moment,today:any}> = ({startDay,today}) => {
 					))
 				}
 			</GridWrapper>
+
 			<GridWrapper isHeader={false}>
 				{daysMap.map((dayItem: any)=>{
 					return (
@@ -64,7 +65,7 @@ const GridWrapper = styled.div<{isHeader: boolean}>`
 interface CellWrapperProps {
 	isWeekend?: boolean;
 	isHeader?: boolean;
-	isSelectedMonth?: ()=> boolean;
+	isSelectedMonth?: ()=> any;
 }
 const CellWrapper = styled.div<CellWrapperProps>`
 	min-width: 140px;
