@@ -7,8 +7,8 @@ export const Daily = () =>{
     const startTime = daily.map((item:any) => item.startTime)
     const [active, setActive] = useState(false)
     console.log(startTime)
-    const handleClick = () =>{
-        setActive(!active)
+    const handleClick = (id:any) =>{
+        setActive(id)
     }
 
 
@@ -19,8 +19,8 @@ export const Daily = () =>{
                 <span className='item_title'>Mon</span>          
                 <div className="item_title-number">29</div>
                 <ul className='item_time'>
-                    {startTime.map((item:any, index:any) => <li onClick={handleClick} key={index} className={`item_time-el ${active && 'item_time-el__active'}`} >{dayjs(item).format('HH:mm')}</li>)}
-                    {/* <li className="item_time-el">09:00</li> */}
+                    {startTime.map((item:any, index:any) => <li onClick={()=>handleClick(index)} key={index} className={`item_time-el ${active === index && 'item_time-el__active'}`} >{dayjs(item).format('HH:mm')}</li>)}
+
                 </ul>
             </div>
         </>

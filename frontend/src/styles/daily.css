@@ -9,7 +9,9 @@
 
 .item_time-el{
     /* font-size: 1.5rem; */
+    border-radius: 5px;
 
+    padding: 0.3rem;
     list-style: none;
     font-weight: bold;
     color: #1976d2;
@@ -31,7 +33,7 @@
     font-weight: 500;
 }
 .item_time-el__active{
-    color: #1976d2;
-    font-weight: bold;
-    font-size: 1.5rem;
+   color: white;
+   background-color: #1976d2;
+
 }
