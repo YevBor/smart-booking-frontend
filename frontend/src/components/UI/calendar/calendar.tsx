@@ -21,7 +21,7 @@ const Calendar = () => {
 				todayHandler={todayHandler}
 				nextMonthHandler={nextMonthHandler}
 			/>
-			<CalGrid startDay={startDay}/>
+			<CalGrid startDay={startDay} today={today}/>
 		</CalendarWrapper>
 	);
 };
