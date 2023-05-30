@@ -28,7 +28,7 @@ const DivWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(59,57,54);
+  background-color: rgb(41,38,33);
   color: #dcdddd;
   padding: 16px;
 `
