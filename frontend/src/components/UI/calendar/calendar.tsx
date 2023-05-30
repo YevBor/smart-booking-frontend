@@ -3,14 +3,32 @@ import CalMonitor from "./cal-monitor";
 import CalGrid from "./cal-grid";
 import moment from "moment";
 import styled from "styled-components";
-import {useState} from "react";
+import {FC, useEffect, useState} from "react";
 
-const Calendar = () => {
+const Calendar:FC = () => {
+	const totalDays = 42;
 	const [today, setToday] = useState(moment());
 	const startDay: moment.Moment = today.clone().startOf('month').startOf('week');
 	const prevMonthHandler = ():void => setToday((prev:any) => prev.clone().subtract(1,'month'));
 	const todayHandler = ():void => setToday(moment())
 	const nextMonthHandler = ():void => setToday((next:any)=> next.clone().add(1,'month'));
+
+	const [openedDays,setOpenedDays] = useState<[]>([]);
+	const startDateQuery = startDay.clone().format('X');
+	const endDateQuery = startDay.clone().add(totalDays,'days').format('X');
+	useEffect((): void => {
+		const token: string | null = localStorage.getItem('token')
+		fetch('http://localhost:4000/slots', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`
+			},
+		})
+			.then(r => r.json())
+			.then(res=> setOpenedDays(res))
+			.catch((err)=>console.log(err))
+	},[]);
 
 	return (
 		<CalendarWrapper>
@@ -21,7 +39,11 @@ const Calendar = () => {
 				todayHandler={todayHandler}
 				nextMonthHandler={nextMonthHandler}
 			/>
-			<CalGrid startDay={startDay} today={today}/>
+			<CalGrid
+				startDay={startDay}
+				today={today}
+				totalDays={totalDays}
+			/>
 		</CalendarWrapper>
 	);
 };

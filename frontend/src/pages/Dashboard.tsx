@@ -5,10 +5,7 @@ const Dashboard = () => {
     return (
         <>
             <WorkingHours />
-            <div className="container">
-                <Calendar/>
-            </div>
-
+            <Calendar/>
         </>
     );
 }
