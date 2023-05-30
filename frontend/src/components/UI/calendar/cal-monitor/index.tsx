@@ -1,22 +1,29 @@
 import styled from "styled-components";
+import {FC} from "react";
+import moment from "moment";
 
-const CalMonitor = ({currentMonth, currentYear}:{ currentMonth: string, currentYear: string }) => {
+const CalMonitor:FC<WithProps> = ({today, prevMonthHandler, todayHandler, nextMonthHandler}) => {
 	return (
 		<DivWrapper>
 			<div>
-				<TitleWrapper>{currentMonth}</TitleWrapper>
-				<TextWrapper>{currentYear}</TextWrapper>
+				<TitleWrapper>{today.format('MMMM')}</TitleWrapper>
+				<TextWrapper>{today.format('YYYY')}</TextWrapper>
 			</div>
 			<div>
-				<ButtonWrapper> &lt;</ButtonWrapper>
-				<TodayButton>Today</TodayButton>
-				<ButtonWrapper> &gt; </ButtonWrapper>
+				<ButtonWrapper onClick={prevMonthHandler}> &lt;</ButtonWrapper>
+				<TodayButton onClick={todayHandler}>Today</TodayButton>
+				<ButtonWrapper onClick={nextMonthHandler}> &gt; </ButtonWrapper>
 			</div>
 		</DivWrapper>
 	);
 };
-
 export default CalMonitor;
+interface WithProps {
+	today: moment.Moment
+	prevMonthHandler: ()=> void
+	todayHandler: ()=> void
+	nextMonthHandler: ()=> void
+}
 const DivWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -39,6 +46,8 @@ const ButtonWrapper = styled.button`
   height: 20px;
   margin-right: 2px;
   border-radius: 4px;
+  cursor: pointer;
+  outline: unset;
 `
 const TodayButton = styled(ButtonWrapper)`
   padding-left: 16px;

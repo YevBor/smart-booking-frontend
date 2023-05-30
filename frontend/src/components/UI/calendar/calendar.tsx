@@ -1,27 +1,27 @@
 import CalHeader from "./cal-header";
 import CalMonitor from "./cal-monitor";
 import CalGrid from "./cal-grid";
-import {add, startOfMonth, startOfWeek, format} from "date-fns";
+import moment from "moment";
 import styled from "styled-components";
+import {useState} from "react";
 
 const Calendar = () => {
-	const days: string[] = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-	const shortDays: string[] = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-	const startDay: Date = startOfWeek(startOfMonth(new Date()));
-	const totalDays = 42;
-	let day = startDay;
-	const daysArray: Date[] = [...Array(totalDays)].map(() => {
-		const currentDay = day;
-		day = add(day, { days: 1 });
-		return currentDay;
-	});
-	const currentMonth: string = format(new Date,'MMMM');
-	const currentYear: string = format(new Date,'yyyy');
+	const [today, setToday] = useState(moment());
+	const startDay: moment.Moment = today.clone().startOf('month').startOf('week');
+	const prevMonthHandler = ():void => setToday((prev:any) => prev.clone().subtract(1,'month'));
+	const todayHandler = ():void => setToday(moment())
+	const nextMonthHandler = ():void => setToday((next:any)=> next.clone().add(1,'month'));
+
 	return (
 		<CalendarWrapper>
 			<CalHeader />
-			<CalMonitor currentMonth={currentMonth} currentYear={currentYear} />
-			<CalGrid daysArray={daysArray}/>
+			<CalMonitor
+				today={today}
+				prevMonthHandler={prevMonthHandler}
+				todayHandler={todayHandler}
+				nextMonthHandler={nextMonthHandler}
+			/>
+			<CalGrid startDay={startDay}/>
 		</CalendarWrapper>
 	);
 };

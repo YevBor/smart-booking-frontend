@@ -1,19 +1,24 @@
 import styled from "styled-components";
-import {FC} from "react";
-import { isSameDay } from 'date-fns'
+import { FC } from "react";
+import moment from "moment";
 
-const CalGrid:FC<{daysArray:Date[]}> = ({daysArray}) => {
-	const isCurrentDay = (day: Date): boolean => isSameDay(day, new Date())
+const CalGrid:FC<{startDay: any}> = ({startDay}) => {
+	const totalDays = 42;
+	const day = startDay.clone().subtract(1, 'day');
+	const daysMap = [...Array(totalDays)].map(() => day.add(1, 'day').clone())
 
+	const days: string[] = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+	const shortDays: string[] = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+	const isCurrentDay = (day: Date) => moment().isSame(day, 'day');
 	return (
 		<GridWrapper>
-			{daysArray.map((dayItem: Date ,i:number)=>{
+			{daysMap.map((dayItem: any)=>{
 				return (
-					<CellWrapper key={i} isWeekend={dayItem.getDay() == 5 || dayItem.getDay() == 6}>
+					<CellWrapper key={dayItem.unix()} isWeekend={dayItem.day() == 5 || dayItem.day() == 6}>
 						<RowInCell>
 							<DayWrapper>
-								{!isCurrentDay(dayItem) && dayItem.getDate()}
-								{isCurrentDay(dayItem) &&(<CurrentDay>{dayItem.getDate()}</CurrentDay>)}
+								{!isCurrentDay(dayItem) && dayItem.format('D')}
+								{isCurrentDay(dayItem) &&(<CurrentDay>{dayItem.format('D')}</CurrentDay>)}
 							</DayWrapper>
 						</RowInCell>
 					</CellWrapper>
