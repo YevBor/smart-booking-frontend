@@ -2,14 +2,14 @@ import dayjs, { Dayjs } from 'dayjs';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import {
   DateField,
-  DatePicker,
   LocalizationProvider,
   TimeField,
 } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useState } from 'react';
 import 'dayjs/locale/he';
-import { Field } from 'formik';
+import { setDailyHours } from '../../store/dailyHours';
+import { useDispatch } from 'react-redux';
 
 interface HoursForm {
   openingHours: any;
@@ -20,6 +20,7 @@ interface HoursForm {
 }
 
 export const WorkingHours = () => {
+  const dispatch = useDispatch();
   const [hoursForm, setHoursForm] = useState<HoursForm>({
     openingHours: null,
     closingHours: null,
@@ -49,6 +50,7 @@ export const WorkingHours = () => {
         console.log('error')}
     else{
             const data = await response.json();
+            dispatch(setDailyHours(data))
             console.log(data)
         }
   }
@@ -101,3 +103,4 @@ export const WorkingHours = () => {
     </LocalizationProvider>
   );
 };
+
