@@ -34,7 +34,6 @@ export const WorkingHours = () => {
         timePerClient: hoursForm.timePerClient,
         startDate: hoursForm.startDate?.format('YYYY-MM-DD'),
     }
-    console.log(postHours)
     const token = localStorage.getItem('token')
     const response = await fetch('http://localhost:4000/slots/daily', {
         method: 'POST',
@@ -48,7 +47,6 @@ export const WorkingHours = () => {
         console.log('error')}
     else{
             const data = await response.json();
-            console.log(data)
         }
   }
 

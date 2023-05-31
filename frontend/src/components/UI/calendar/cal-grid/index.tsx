@@ -7,7 +7,7 @@ const CalGrid:FC<CalGrid> = ({startDay,today,totalDays}) => {
 	const day = startDay.clone().subtract(1, 'day');
 	const daysMap = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
 	const isCurrentDay = (day: moment.Moment) => moment().isSame(day, 'day');
-	const isSelectedMonth = (day:moment.Moment) => today.isSame(day, 'month');
+	const isSelectedMonth = (day: moment.Moment) => today.isSame(day, 'month');
 
 	return (
 		<>

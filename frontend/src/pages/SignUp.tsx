@@ -31,7 +31,6 @@ export default function SignUp() {
     onSubmit: async (values) => {
       try {
         const response = await registerUser(values);
-        console.log(response);
         navigate('/sign-in')
       } catch (error) {
         console.log(error);

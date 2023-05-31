@@ -5,6 +5,13 @@ import moment from 'moment';
 import styled from "styled-components";
 import {FC, useEffect, useState} from "react";
 
+export interface OpenedSlots {
+	id: number,
+	bookingBy: any,
+	startTime: string,
+	endTime: string,
+	status: number,
+}
 const Calendar:FC = () => {
 	const totalDays = 42;
 	const [today, setToday] = useState(moment());
@@ -13,9 +20,7 @@ const Calendar:FC = () => {
 	const todayHandler = ():void => setToday(moment())
 	const nextMonthHandler = ():void => setToday((next:any)=> next.clone().add(1,'month'));
 
-	const [openedDays,setOpenedDays] = useState<[]>([]);
-	const startDateQuery = startDay.clone().format('X');
-	const endDateQuery = startDay.clone().add(totalDays,'days').format('X');
+	const [openedDays,setOpenedDays] = useState<OpenedSlots[]>([]);
 	useEffect((): void => {
 		const token: string | null = localStorage.getItem('token')
 		fetch('http://localhost:4000/slots', {
@@ -25,11 +30,16 @@ const Calendar:FC = () => {
 				'Authorization': `Bearer ${token}`
 			},
 		})
-			.then(r => r.json())
-			.then(res=> setOpenedDays(res))
+			.then(response => response.json())
+			.then((oSlots: OpenedSlots[]) => {
+				const currentMonthSlots = oSlots.filter(slot =>
+					moment(slot.startTime).startOf('month').isSame(today.startOf('month'))
+				);
+				setOpenedDays(currentMonthSlots)
+			})
 			.catch((err)=>console.log(err))
-	},[]);
-
+	},[today]);
+	console.log(openedDays);
 	return (
 		<CalendarWrapper>
 			<CalHeader />

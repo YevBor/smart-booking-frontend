@@ -14,7 +14,6 @@ export const ProtectedRoute = ({ children }: any) => {
   const isAuthenticated = useSelector(
     (state: any) => state.signin.isAuthenticated
   );
-  console.log(isAuthenticated);
   return isAuthenticated ? (
     children
   ) : (
