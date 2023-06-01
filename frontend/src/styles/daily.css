@@ -1,10 +1,17 @@
-.item{
-    width: 5%;
+.weekly{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+}
+
+
+.weekly__item_day{
+    /* width: 5%; */
     display: flex;
     flex-direction: column;
     align-items: center;
     border-top: 4px solid #1976d2;
-    margin: 1rem;
+
 }
 
 .item_time-el{
@@ -20,10 +27,28 @@
 }
 
 .item_time{
-    padding-left:0;
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
+    
+    color: #1976d2;
+    padding: 0.3rem;
+    list-style: none;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    width: 100%;
+    background-color: #e3f2fd;
+    border: 1px solid #1976d2;
+    
+    transition: all 0.3s ease-in-out;
+
 }
+.item_time:hover{
+    cursor: pointer;
+    color: white;
+}
+
+
+
 .item_title{
     padding-top: 14px;
 }
