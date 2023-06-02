@@ -46,7 +46,7 @@ export const WorkingHours = () => {
     if(!response.ok){
         console.log('error')}
     else{
-            const data = await response.json();
+        await response.json();
         }
   }
 
