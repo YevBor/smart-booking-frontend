@@ -39,7 +39,7 @@ const Calendar:FC = () => {
 			})
 			.catch((err)=>console.log(err))
 	},[today]);
-	console.log(openedDays);
+
 	return (
 		<CalendarWrapper>
 			<CalHeader />
@@ -53,6 +53,7 @@ const Calendar:FC = () => {
 				startDay={startDay}
 				today={today}
 				totalDays={totalDays}
+				openedDays={openedDays}
 			/>
 		</CalendarWrapper>
 	);

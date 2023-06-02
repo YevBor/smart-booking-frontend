@@ -1,14 +1,41 @@
 import styled from "styled-components";
 import { FC } from "react";
 import moment from "moment";
+import {OpenedSlots} from "../calendar.tsx";
 
-const CalGrid:FC<CalGrid> = ({startDay,today,totalDays}) => {
+// This function converts date strings into Moment objects for easier handling
+const processOpenedDays = (openedDays: OpenedSlots[]) => {
+	return openedDays.map(day => ({
+		...day,
+		startTime: moment(day.startTime),
+		endTime: moment(day.endTime)
+	}));
+};
+const CalGrid:FC<CalGrid> = ({startDay,today,totalDays,openedDays}) => {
+	const processedOpenedDays = processOpenedDays(openedDays);
 
 	const day = startDay.clone().subtract(1, 'day');
 	const daysMap = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
 	const isCurrentDay = (day: moment.Moment) => moment().isSame(day, 'day');
 	const isSelectedMonth = (day: moment.Moment) => today.isSame(day, 'month');
 
+	const isOpenedDay = (day: moment.Moment) => {
+		for (const openedDay of processedOpenedDays) {
+			if (day.isBetween(openedDay.startTime, openedDay.endTime, 'day', '[]')) {
+				return openedDay;
+			}
+		}
+		return null;
+	};
+	const getDayContent = (day: moment.Moment) => {
+		const openedDay = isOpenedDay(day);
+		if (openedDay) {
+			return `${day.format('D')} - Opened ${openedDay.startTime}`;
+		}
+		else {
+			return isCurrentDay(day) ? <CurrentDay>{day.format('D')}</CurrentDay> : day.format('D');
+		}
+	};
 	return (
 		<>
 			<GridWrapper isHeader={true}>
@@ -33,8 +60,9 @@ const CalGrid:FC<CalGrid> = ({startDay,today,totalDays}) => {
 						>
 							<RowInCell justifyContent={'flex-end'}>
 								<DayWrapper>
-									{!isCurrentDay(dayItem) && dayItem.format('D')}
-									{isCurrentDay(dayItem) &&(<CurrentDay>{dayItem.format('D')}</CurrentDay>)}
+									{/*{!isCurrentDay(dayItem) && dayItem.format('D')}*/}
+									{/*{isCurrentDay(dayItem) &&(<CurrentDay>{dayItem.format('D')}</CurrentDay>)}*/}
+									{getDayContent(dayItem)}
 								</DayWrapper>
 							</RowInCell>
 						</CellWrapper>
@@ -49,7 +77,8 @@ export default CalGrid;
 interface CalGrid {
 	startDay: moment.Moment,
 	today:any,
-	totalDays:number
+	totalDays:number,
+	openedDays: OpenedSlots[]
 }
 const CurrentDay = styled.div`
   height: 80%;
