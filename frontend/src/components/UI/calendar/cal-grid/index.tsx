@@ -3,7 +3,6 @@ import { FC } from "react";
 import moment from "moment";
 import {OpenedSlots} from "../calendar.tsx";
 
-// This function converts date strings into Moment objects for easier handling
 const processOpenedDays = (openedDays: OpenedSlots[]) => {
 	return openedDays.map(day => ({
 		...day,
@@ -20,22 +19,26 @@ const CalGrid:FC<CalGrid> = ({startDay,today,totalDays,openedDays}) => {
 	const isSelectedMonth = (day: moment.Moment) => today.isSame(day, 'month');
 
 	const isOpenedDay = (day: moment.Moment) => {
-		for (const openedDay of processedOpenedDays) {
-			if (day.isBetween(openedDay.startTime, openedDay.endTime, 'day', '[]')) {
-				return openedDay;
-			}
-		}
-		return null;
+		const matchingSlots = processedOpenedDays.filter(openedDay =>
+			day.isBetween(openedDay.startTime, openedDay.endTime, 'day', '[]')
+		);
+		return matchingSlots.length > 0 ? matchingSlots : null;
 	};
 	const getDayContent = (day: moment.Moment) => {
-		const openedDay = isOpenedDay(day);
-		if (openedDay) {
-			return `${day.format('D')} - Opened ${openedDay.startTime}`;
-		}
-		else {
-			return isCurrentDay(day) ? <CurrentDay>{day.format('D')}</CurrentDay> : day.format('D');
+		const openedDaySlots = isOpenedDay(day);
+		if (openedDaySlots) {
+			return openedDaySlots.map((ods)=>(
+				<ListWrapper key={ods.id}>
+						<ListItemWrapper status={ods.status}>
+							{moment(ods.startTime).format('HH:mm')} - {moment(ods.endTime).format('HH:mm')}
+						</ListItemWrapper>
+				</ListWrapper>
+			));
+		} else {
+			return '';
 		}
 	};
+
 	return (
 		<>
 			<GridWrapper isHeader={true}>
@@ -59,11 +62,17 @@ const CalGrid:FC<CalGrid> = ({startDay,today,totalDays,openedDays}) => {
 							isSelectedMonth={isSelectedMonth(dayItem)}
 						>
 							<RowInCell justifyContent={'flex-end'}>
-								<DayWrapper>
-									{/*{!isCurrentDay(dayItem) && dayItem.format('D')}*/}
-									{/*{isCurrentDay(dayItem) &&(<CurrentDay>{dayItem.format('D')}</CurrentDay>)}*/}
-									{getDayContent(dayItem)}
-								</DayWrapper>
+								<ShowDayWrapper>
+									<SlotWrapper>
+										<ul style={{paddingLeft:'20px'}}>
+											{getDayContent(dayItem)}
+										</ul>
+									</SlotWrapper>
+									<DayWrapper onClick={()=>{console.log(dayItem)}}>
+											{!isCurrentDay(dayItem) && dayItem.format('D')}
+											{isCurrentDay(dayItem) &&(<CurrentDay>{dayItem.format('D')}</CurrentDay>)}
+									</DayWrapper>
+								</ShowDayWrapper>
 							</RowInCell>
 						</CellWrapper>
 					)
@@ -80,11 +89,67 @@ interface CalGrid {
 	totalDays:number,
 	openedDays: OpenedSlots[]
 }
+
+const SlotWrapper = styled.div`
+  font-size: 0.8rem;
+  align-self: center;
+  padding: 8px;
+  height: 100px;
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+`;
+const ListWrapper = styled.li`	  
+  margin: unset;
+  list-style-type: none;
+  width: 100%;
+`
+const ListItemWrapper = styled.button<{status: number}>`	  
+  position: relative;
+  left: -14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 114px;
+  border: unset;
+  background: ${(props)=> props.status > 0 ? 'rgb(51,170,219)':'unset'};
+  color: #DDDDDD;
+  cursor: pointer;
+  margin-top: 2px;
+  padding: 4px;
+  border-radius: 4px;
+  text-align: left;
+`
+const RowInCell = styled.div<{justifyContent: string, pr?:number }>`
+  display: flex;
+  flex-direction: column;
+  justify-content: ${(props)=> props.justifyContent ? props.justifyContent :'flex-start'};
+  ${(props)=> props.pr && `padding-right:${props.pr * 8}px`}
+`;
+
+const ShowDayWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+const DayWrapper = styled.div`
+  height: 33px;
+  width: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px;
+  cursor: pointer;
+`
+
 const CurrentDay = styled.div`
-  height: 80%;
-  width: 80%;
+  height: 100%;
+  width: 100%;
   background-color: #f00;
-  border-radius: 50%;	  
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,20 +168,9 @@ interface CellWrapperProps {
 }
 const CellWrapper = styled.div<CellWrapperProps>`
 	min-width: 140px;
-  	min-height: ${props => props.isHeader ? 24:  80 }px;
+  	min-height: ${props => props.isHeader ? 24:  100 }px;
   	background-color: ${(props) => (props.isWeekend ? 'rgb(47,45,42)': 'rgb(41,38,33)')};
   	color: ${props => props.isSelectedMonth ? '#DDDDDD' : '#555759'};
 `;
-const RowInCell = styled.div<{justifyContent: string, pr?:number }>`
-  display: flex;
-  justify-content: ${(props)=> props.justifyContent ? props.justifyContent :'flex-start'};
-  ${(props)=> props.pr && `padding-right:${props.pr * 8}px`}
-`;
-const DayWrapper = styled.div`
-  height: 33px;
-  width: 33px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 2px;
-`
+
+
