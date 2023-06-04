@@ -18,7 +18,8 @@ interface HoursForm {
   startDate: Dayjs | null;
 }
 
-export const WorkingHours = () => {
+export const WorkingHours = ({selectedDay}:any) => {
+
   const [hoursForm, setHoursForm] = useState<HoursForm>({
     openingHours: null,
     closingHours: null,
@@ -32,7 +33,7 @@ export const WorkingHours = () => {
         closingHours: hoursForm.closingHours?.format('HH:mm'),
         lunchDuration: hoursForm.lunchDuration,
         timePerClient: hoursForm.timePerClient,
-        startDate: hoursForm.startDate?.format('YYYY-MM-DD'),
+        startDate: selectedDay.format('YYYY-MM-DD'),
     }
     const token = localStorage.getItem('token')
     const response = await fetch('http://localhost:4000/slots/daily', {
@@ -43,6 +44,7 @@ export const WorkingHours = () => {
         },
         body: JSON.stringify(postHours),
     })
+
     if(!response.ok){
         console.log('error')}
     else{
@@ -88,7 +90,7 @@ export const WorkingHours = () => {
         ></TextField>
         <DateField
         size='small'
-          value={hoursForm.startDate}
+          value={selectedDay}
           onChange={(newValue) =>
             setHoursForm({ ...hoursForm, startDate: newValue })
           }
