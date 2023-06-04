@@ -11,6 +11,8 @@ import { Provider } from 'react-redux'
 import store from './store/index'
 import { PageWrapper } from './components/pageWrapper/PageWrapper'
 import { ProtectedRoute } from './components/protectedRoute/ProtectedRoute'
+import { Daily } from './components/UI/clientCalendar/Daily'
+import { WorkingHours } from './components/workingHours/WorkingHours'
 
 
 const router = createBrowserRouter([
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
   },
   { path: '/forgot',
   element: <PageWrapper><Forgot/> </PageWrapper>,
+  },
+  {
+    path:'/booking',
+    element: <PageWrapper><Daily/></PageWrapper>
+  },
+  {
+    path:'/schedule',
+    element: <PageWrapper><WorkingHours/></PageWrapper>
   }
 ])
 
