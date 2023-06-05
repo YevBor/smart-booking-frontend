@@ -2,9 +2,15 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import {WorkingHours} from "../../../workingHours/WorkingHours.tsx";
+import {FC} from "react";
+import moment from "moment/moment";
 
-
-const FormModal = ({open, handleClose, selectedDay}: any) => {
+interface FormModalProps {
+	open: boolean;
+	handleClose: () => void;
+	selectedDay: moment.Moment | null;
+}
+const FormModal: FC<FormModalProps> = ({open, handleClose, selectedDay}) => {
 
 	return (
 		<Modal

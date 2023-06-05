@@ -3,6 +3,7 @@ import {FC, useCallback, useMemo, useState} from "react";
 import moment from "moment";
 import {OpenedSlots} from "../calendar.tsx";
 import FormModal from "../form-modal";
+import ClientInfoModal from "../client-info-modal";
 
 const processOpenedDays = (openedDays: OpenedSlots[]) => {
 	return openedDays.map(day => ({
@@ -28,13 +29,16 @@ const CalGrid:FC<CalGrid> = ({startDay,today,totalDays,openedDays}) => {
 		);
 		return matchingSlots.length > 0 ? matchingSlots : null;
 	},[processedOpenedDays]);
-	
+
 	const getDayContent = useCallback((day: moment.Moment) => {
 		const openedDaySlots = isOpenedDay(day);
 		if (openedDaySlots) {
 			return openedDaySlots.map((ods)=>(
 				<ListWrapper key={ods.id}>
-						<ListItemWrapper status={ods.status}>
+						<ListItemWrapper status={ods.status} onClick={()=>{
+							setOpenModal(true)
+							setSelectedSlot(ods)
+						}}>
 							{moment(ods.startTime).format('HH:mm')} - {moment(ods.endTime).format('HH:mm')}
 						</ListItemWrapper>
 				</ListWrapper>
@@ -51,6 +55,9 @@ const CalGrid:FC<CalGrid> = ({startDay,today,totalDays,openedDays}) => {
 			content: getDayContent(day),
 		}));
 	}, [daysMap, getDayContent, isOpenedDay]);
+
+	const [openModal,setOpenModal] = useState(false);
+	const [selectedSlot, setSelectedSlot] = useState<any | null>(null);
 
 	return (
 		<>
@@ -93,6 +100,11 @@ const CalGrid:FC<CalGrid> = ({startDay,today,totalDays,openedDays}) => {
 					open={selectedDay !== null}
 					handleClose={() => setSelectedDay(null)}
 					selectedDay={selectedDay}
+				/>
+				<ClientInfoModal
+					openModal={openModal}
+					closeModal={()=>setOpenModal(false)}
+					selectedSlot={selectedSlot}
 				/>
 			</GridWrapper>
 		</>
@@ -139,7 +151,7 @@ const ListItemWrapper = styled.button<{status: number}>`
   margin-top: 2px;
   padding: 4px;
   border-radius: 4px;
-  text-align: left;
+  text-align: center;
 `
 const RowInCell = styled.div<{justifyContent: string, pr?:number }>`
   display: flex;
