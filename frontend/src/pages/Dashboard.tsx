@@ -1,11 +1,12 @@
-import {Calendar} from '../components/UI/calendar';
+import React from 'react'
+import {WorkingHours} from '../components/workingHours/WorkingHours'
 
 const Dashboard = () => {
-    return (
-        <>
-            <Calendar/>
-        </>
-    );
+  return (
+    <>
+      <WorkingHours/>
+    </>
+  )
 }
 
 export default Dashboard;

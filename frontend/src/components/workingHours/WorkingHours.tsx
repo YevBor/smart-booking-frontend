@@ -8,7 +8,7 @@ import {
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useState } from 'react';
 import 'dayjs/locale/he';
-
+import { Field } from 'formik';
 
 interface HoursForm {
   openingHours: any;
@@ -18,8 +18,7 @@ interface HoursForm {
   startDate: Dayjs | null;
 }
 
-export const WorkingHours = ({selectedDay}:any) => {
-
+export const WorkingHours = () => {
   const [hoursForm, setHoursForm] = useState<HoursForm>({
     openingHours: null,
     closingHours: null,
@@ -48,7 +47,8 @@ export const WorkingHours = ({selectedDay}:any) => {
     if(!response.ok){
         console.log('error')}
     else{
-        await response.json();
+            const data = await response.json();
+            console.log(data)
         }
   }
 
@@ -100,3 +100,4 @@ export const WorkingHours = ({selectedDay}:any) => {
     </LocalizationProvider>
   );
 };
+
