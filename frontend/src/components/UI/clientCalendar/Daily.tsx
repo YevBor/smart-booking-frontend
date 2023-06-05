@@ -55,11 +55,12 @@ export const Daily = () => {
   })
   
 
-  const weeksSlots:any = [];
+  const weeksSlots:any = {};
   for(let i = 0; i<7; i++){
     const day = dayjs().add(i, 'day').format('YYYY-MM-DD');
-    weeksSlots[day] = [];
+    weeksSlots[i] = day;
   }
+  console.log(weeksSlots)
 
 
 
