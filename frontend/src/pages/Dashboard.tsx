@@ -1,10 +1,10 @@
 import React from 'react'
-import {WorkingHours} from '../components/workingHours/WorkingHours'
+import {Calendar} from "../components/UI/calendar";
 
 const Dashboard = () => {
   return (
     <>
-      <WorkingHours/>
+        <Calendar/>
     </>
   )
 }
