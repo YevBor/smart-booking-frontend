@@ -1,26 +1,23 @@
 import React, {FC} from 'react';
-import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
 import {OpenedSlots} from "../calendar.tsx";
+import moment from "moment";
+import Fade from '@mui/material/Fade';
+import Backdrop from '@mui/material/Backdrop';
 
 interface ClientInfoModalInterface {
 	openModal: boolean,
 	closeModal: ()=> void,
 	selectedSlot: OpenedSlots,
 }
-const ClientInfoModal: FC<ClientInfoModalInterface> = ({openModal, closeModal, selectedSlot}: any) => {
-	console.log(selectedSlot);
-	return (
+const ClientInfoModal: FC<ClientInfoModalInterface> = ({openModal, closeModal, selectedSlot}) => {
+	return selectedSlot && (
 		<Modal
-			aria-labelledby="transition-modal-title"
-			aria-describedby="transition-modal-description"
 			open={openModal}
 			onClose={closeModal}
 			closeAfterTransition
-			slots={{backdrop: Backdrop}}
+			slots={{ backdrop: Backdrop }}
 			slotProps={{
 				backdrop: {
 					timeout: 500,
@@ -28,17 +25,22 @@ const ClientInfoModal: FC<ClientInfoModalInterface> = ({openModal, closeModal, s
 			}}
 		>
 			<Fade in={openModal}>
-				<Box sx={style}>
-					<Typography id="transition-modal-title" variant="h6" component="h2">
-						title of
-					</Typography>
-					<Typography id="transition-modal-description" sx={{mt: 2}}>
-						Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-					</Typography>
-				</Box>
+			<Box sx={style}>
+				{selectedSlot?.bookingBy?.user.email && (<div>
+					User Mail: <strong>{selectedSlot?.bookingBy?.user.email}</strong>
+				</div>)}
+
+				<div>
+					Start Time: <strong>{moment(selectedSlot.startTime).format('MMMM Do YYYY, HH:mm')}</strong>
+				</div>
+
+				<div>
+					End Time: <strong>{moment(selectedSlot.endTime).format('MMMM Do YYYY, HH:mm')}</strong>
+				</div>
+			</Box>
 			</Fade>
 		</Modal>
-	);
+	)
 };
 
 export default ClientInfoModal;
