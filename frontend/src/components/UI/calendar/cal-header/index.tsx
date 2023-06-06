@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import {FC} from "react";
+import {DivWrapper} from "./styles";
 
 const CalHeader:FC = () => {
 	return (
@@ -9,7 +9,3 @@ const CalHeader:FC = () => {
 };
 
 export default CalHeader;
-const DivWrapper = styled.div`
-	height: 36px;
-  	background-color: rgb(47,45,42);
-`

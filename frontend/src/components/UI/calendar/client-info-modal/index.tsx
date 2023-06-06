@@ -1,16 +1,13 @@
 import React, {FC} from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import {OpenedSlots} from "../calendar.tsx";
 import moment from "moment";
 import Fade from '@mui/material/Fade';
 import Backdrop from '@mui/material/Backdrop';
+import {OpenedSlots} from "../../../../utils/interfaces";
+import {styleBox} from "./styles";
 
-interface ClientInfoModalInterface {
-	openModal: boolean,
-	closeModal: ()=> void,
-	selectedSlot: OpenedSlots,
-}
+
 const ClientInfoModal: FC<ClientInfoModalInterface> = ({openModal, closeModal, selectedSlot}) => {
 	return selectedSlot && (
 		<Modal
@@ -25,7 +22,7 @@ const ClientInfoModal: FC<ClientInfoModalInterface> = ({openModal, closeModal, s
 			}}
 		>
 			<Fade in={openModal}>
-			<Box sx={style}>
+			<Box sx={styleBox}>
 				{selectedSlot?.bookingBy?.user.email && (<div>
 					User Mail: <strong>{selectedSlot?.bookingBy?.user.email}</strong>
 				</div>)}
@@ -44,14 +41,8 @@ const ClientInfoModal: FC<ClientInfoModalInterface> = ({openModal, closeModal, s
 };
 
 export default ClientInfoModal;
-const style = {
-	position: 'absolute',
-	top: '50%',
-	left: '50%',
-	transform: 'translate(-50%, -50%)',
-	width: 400,
-	bgcolor: 'background.paper',
-	border: '2px solid #000',
-	boxShadow: 24,
-	p: 4,
-};
+interface ClientInfoModalInterface {
+	openModal: boolean,
+	closeModal: ()=> void,
+	selectedSlot: OpenedSlots,
+}
