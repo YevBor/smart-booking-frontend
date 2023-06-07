@@ -15,6 +15,7 @@ export const signInUser = async (userDetails: any) => {
   );
   localStorage.setItem('token', response.data.accessToken);
   localStorage.setItem('refreshToken', response.data.refreshToken);
+  console.log(response.data)
   return response.data;
 };
 

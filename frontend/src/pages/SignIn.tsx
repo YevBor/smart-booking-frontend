@@ -34,7 +34,7 @@ export default function SignUp() {
       password: '',
     },
     validationSchema: validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values:any) => {
       dispatch(signInStart())
       try {
         const response = await signInUser(values);
