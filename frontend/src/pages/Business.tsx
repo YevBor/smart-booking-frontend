@@ -1,4 +1,4 @@
-import {Daily} from "../components/UI/clientCalendar/Daily.tsx";
+import {Daily} from "../components/UI/clientCalendar/Daily";
 import React from "react";
 
 const Business = () => {

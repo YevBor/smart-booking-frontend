@@ -9,7 +9,6 @@ import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { Profile } from '../profile/Profile';
 
-
 export const Header = ()=> {
     const navigate = useNavigate()
     const isLogin = useSelector((state:any) => state.signin.isAuthenticated)
@@ -27,12 +26,27 @@ export const Header = ()=> {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Smart Booking
-                    </Typography>
+                        <Typography
+                            variant="h6"
+                            component="a"
+                            href="/"
+                            noWrap
+                            sx={{
+                                flexGrow: 1,
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            SmartBooking
+                        </Typography>
+
                     {isLogin ? <Profile/> : <>
                     <Button color="inherit" onClick={()=> navigate("/sign-in")}>Login</Button>
-                    
+
                     <Button color="inherit" onClick={()=> navigate("/sign-up")}>Registrate</Button></>}
                     </Toolbar>
                 </AppBar>
@@ -40,5 +54,5 @@ export const Header = ()=> {
 
         </>
     )
-} 
+}
 

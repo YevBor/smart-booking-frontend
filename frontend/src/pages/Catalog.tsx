@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {requestBusiness} from "../utils/requests/business.ts";
+import {requestBusiness} from "../utils/requests";
 
 const Catalog = () => {
 	const [business,setBusiness] = useState<any>(null);

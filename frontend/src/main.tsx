@@ -12,8 +12,8 @@ import store from './store/index'
 import { PageWrapper } from './components/pageWrapper/PageWrapper'
 import { ProtectedRoute } from './components/protectedRoute/ProtectedRoute'
 import { Daily } from './components/UI/clientCalendar/Daily'
-import Business from "./pages/Business.tsx";
-import Catalog from "./pages/Catalog.tsx";
+import Business from "./pages/Business";
+import Catalog from "./pages/Catalog";
 
 
 const router = createBrowserRouter([
