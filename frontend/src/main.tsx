@@ -14,6 +14,7 @@ import { ProtectedRoute } from './components/protectedRoute/ProtectedRoute'
 import { Daily } from './components/UI/clientCalendar/Daily'
 import Business from "./pages/Business";
 import Catalog from "./pages/Catalog";
+import './config/i18n';
 
 
 const router = createBrowserRouter([
