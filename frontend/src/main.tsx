@@ -12,16 +12,18 @@ import store from './store/index'
 import { PageWrapper } from './components/pageWrapper/PageWrapper'
 import { ProtectedRoute } from './components/protectedRoute/ProtectedRoute'
 import { Daily } from './components/UI/clientCalendar/Daily'
-import { WorkingHours } from './components/workingHours/WorkingHours'
+import Business from "./pages/Business";
+import Catalog from "./pages/Catalog";
 
 
 const router = createBrowserRouter([
-  {path: '/',
-  element: <PageWrapper><Root/> </PageWrapper>,
-
+  {
+    path: '/',
+    element: <PageWrapper><Root/> </PageWrapper>,
   },
-  {path: '/sign-up',
-  element: <PageWrapper><SignUp/> </PageWrapper>,
+  {
+    path: '/sign-up',
+    element: <PageWrapper><SignUp/> </PageWrapper>,
   },
   {path: '/sign-in',
   element: <PageWrapper><SignIn/> </PageWrapper>,
@@ -38,8 +40,12 @@ const router = createBrowserRouter([
     element: <PageWrapper><Daily/></PageWrapper>
   },
   {
-    path:'/schedule',
-    element: <PageWrapper><WorkingHours/></PageWrapper>
+    path: '/biz/:slug',
+    element: <PageWrapper><Business/></PageWrapper>
+  },
+  {
+    path: '/biz',
+    element: <PageWrapper><Catalog/></PageWrapper>
   }
 ])
 
