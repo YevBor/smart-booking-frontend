@@ -10,7 +10,7 @@ interface Slot {
     startTime: string;
     endTime: string;
     status: number;
-    bookingBy: null | string;  // adjust the type of `bookingBy` as needed
+    bookingBy?: null | string;  // adjust the type of `bookingBy` as needed
   }
 
 
@@ -40,12 +40,10 @@ export const Daily = () => {
      const arr = await weekly();
      setData(arr)
      setIsLoading(false)
- },[])  
-    
- console.log(data)
+ },[])
 
   useEffect(()=>{
-    slots()
+    slots().then()
   },[slots])
 
   const today = dayjs().format('YYYY-MM-DD')
@@ -53,17 +51,13 @@ export const Daily = () => {
     const slotDay = dayjs(slot.startTime).format('YYYY-MM-DD');
     return slotDay === today;
   })
-  
+
 
   const weeksSlots:any = {};
   for(let i = 0; i<7; i++){
     const day = dayjs().add(i, 'day').format('YYYY-MM-DD');
     weeksSlots[i] = day;
   }
-  console.log(weeksSlots)
-
-
-
 
   const currentDayName = dayjs().format('ddd');
   const currentDayNumber = dayjs().format('DD');

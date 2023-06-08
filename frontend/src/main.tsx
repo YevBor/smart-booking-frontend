@@ -15,6 +15,7 @@ import { Daily } from './components/UI/clientCalendar/Daily'
 import Business from "./pages/Business";
 import Catalog from "./pages/Catalog";
 import './config/i18n';
+import NotFoundPage from "./pages/NotFoundPage";
 
 
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: '/biz',
     element: <PageWrapper><Catalog/></PageWrapper>
+  },
+  {
+    path: '*',
+    element: <PageWrapper><NotFoundPage/></PageWrapper>
   }
 ])
 
