@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {requestBusiness} from "../utils/requests";
+import {Container, Paper} from "@mui/material";
+import {BusinessInfo} from "../utils/interfaces";
 
 const Catalog = () => {
-	const [business,setBusiness] = useState<any>(null);
+	const [business,setBusiness] = useState<BusinessInfo[] | null>(null);
 	useEffect(() => {
 		const fetcher = async () => {
 			const response = await requestBusiness();
@@ -11,10 +13,19 @@ const Catalog = () => {
 		fetcher().then()
 	}, []);
 	return (
-		<div>
+		<Container>
 			<h1>Catalog</h1>
-			{JSON.stringify(business)}
-		</div>
+			{
+				business && business.map((biz: BusinessInfo)=>(
+					<Paper key={biz.id} sx={{ mt:'8px', p:'8px'}}>
+						<pre>
+							{JSON.stringify(biz, null, 2)}
+						</pre>
+					</Paper>
+				))
+			}
+
+		</Container>
 	);
 };
 

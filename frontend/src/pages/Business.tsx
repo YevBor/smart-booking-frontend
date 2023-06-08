@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import {requestBusinessBySlug} from "../utils/requests/business";
 import NotFoundPage from "./NotFoundPage";
 import {BusinessInfo} from "../utils/interfaces";
+import {Container, Paper} from "@mui/material";
 
 const Business: FC = (): ReactElement => {
 	const {slug} = useParams();
@@ -35,12 +36,16 @@ const Business: FC = (): ReactElement => {
 	}
 
 	return (
-		<div>
+		<Container>
 			<div>
 				here we must give to business client information about current business
 			</div>
 			<strong>
-				{JSON.stringify(business)}
+				<Paper sx={{ mt:'8px', p:'8px'}}>
+						<pre>
+							{JSON.stringify(business, null, 2)}
+						</pre>
+				</Paper>
 			</strong>
 			<div>
 				because our main point as SAAS this page
@@ -49,7 +54,7 @@ const Business: FC = (): ReactElement => {
 				schedule for 1 week
 			</div>
 			<Daily/>
-		</div>
+		</Container>
 	);
 };
 
