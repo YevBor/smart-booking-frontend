@@ -77,7 +77,7 @@ export const Daily = () => {
           </div>
         ))}
       </div>
-      <Button onClick={() => weekly()}>Start</Button>
+      <Button onClick={slots}>Start</Button>
     </div>
   );
 };
