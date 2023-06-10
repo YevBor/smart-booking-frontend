@@ -1,7 +1,7 @@
 import {Box} from '@mui/material'
 import {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
-import {requestBusiness} from "../utils/requests";
+import {requestBusiness} from "../services/business/business"
 const Root = () => {
   const [business,setBusiness] = useState<any>(null);
   useEffect(() => {

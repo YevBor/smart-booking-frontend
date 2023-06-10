@@ -4,7 +4,7 @@ import CalGrid from "./cal-grid";
 import moment from 'moment';
 import {FC, useEffect, useState} from "react";
 import {OpenedSlots} from "../../../utils/interfaces";
-import {requestMonthlySlots} from "../../../utils/requests";
+import {requestMonthlySlots} from "../../../services/slots/slots"
 import {CalendarWrapper} from "./styles";
 
 

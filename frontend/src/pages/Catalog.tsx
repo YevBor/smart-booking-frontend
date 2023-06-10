@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {requestBusiness} from "../utils/requests";
+import {requestBusiness} from "../services/business/business"
 import {Container, Paper} from "@mui/material";
 import {BusinessInfo} from "../utils/interfaces";
 
