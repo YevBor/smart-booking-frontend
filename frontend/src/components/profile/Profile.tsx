@@ -1,9 +1,9 @@
 import { IconButton, Menu, MenuItem } from "@mui/material"
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 import { useState } from "react";
-import { AccountCircle } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { signOut } from "../../store/signin";
+import {MdAccountCircle} from "react-icons/md";
 
 
 export const Profile = () => {
@@ -12,7 +12,7 @@ export const Profile = () => {
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
       };
-    
+
       const handleClose = () => {
         setAnchorEl(null);
       };
@@ -32,7 +32,7 @@ export const Profile = () => {
             onClick={handleMenu}
             color="inherit"
         >
-            <AccountCircle />
+            <MdAccountCircle />
         </IconButton>
         <Menu
             id="menu-appbar"
@@ -53,7 +53,7 @@ export const Profile = () => {
             <MenuItem onClick={handleClose}>My account</MenuItem>
             <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
         </Menu>
-    </>    
+    </>
     )
 }
 

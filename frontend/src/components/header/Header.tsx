@@ -4,10 +4,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { Profile } from '../profile/Profile';
+import {GiHamburgerMenu} from "react-icons/gi";
 
 export const Header = ()=> {
     const navigate = useNavigate()
@@ -24,7 +24,7 @@ export const Header = ()=> {
                         aria-label="menu"
                         sx={{ mr: 2 }}
                     >
-                        <MenuIcon />
+                        <GiHamburgerMenu />
                     </IconButton>
                         <Typography
                             variant="h6"
