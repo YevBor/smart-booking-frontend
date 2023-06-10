@@ -5,13 +5,10 @@ import { sxCard } from '../styles/modalStyles';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { signInUser } from '../auth/authService';
+import { signInUser } from '../services/auth/authService';
 import CommonLink from '../components/modalFormComponents/CommonLink';
-import {signInStart, signInSuccess, signInFailure} from '../store/signin'
+import { signInStart, signInSuccess, signInFailure } from '../store/signin';
 import { useDispatch } from 'react-redux';
-
-
-
 
 const validationSchema = yup.object({
   email: yup
@@ -34,15 +31,15 @@ export default function SignUp() {
       password: '',
     },
     validationSchema: validationSchema,
-    onSubmit: async (values:any) => {
-      dispatch(signInStart())
+    onSubmit: async (values: any) => {
+      dispatch(signInStart());
       try {
         const response = await signInUser(values);
-        navigate('/dashboard')
-        dispatch(signInSuccess(response))
+        navigate('/dashboard');
+        dispatch(signInSuccess(response));
       } catch (error) {
         console.log(error);
-        dispatch(signInFailure(error))
+        dispatch(signInFailure(error));
       }
     },
   });

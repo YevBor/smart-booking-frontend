@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import dayjs from 'dayjs';
-import { weekly } from '../auth/authService'
+import { weekly } from '../services/booking/booking'
 
 const useSlots = () => {
   const [active, setActive] = useState(false);

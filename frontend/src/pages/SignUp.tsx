@@ -3,7 +3,7 @@ import ButtonForm from '../components/modalFormComponents/ButtonForm';
 import Title from '../components/modalFormComponents/Title';
 import { sxCard } from '../styles/modalStyles';
 import { useFormik } from 'formik';
-import { registerUser } from '../auth/authService';
+import { registerUser } from '../services/auth/authService';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,7 +21,6 @@ const validationSchema = yup.object({
 export default function SignUp() {
   const navigate = useNavigate();
 
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -31,7 +30,7 @@ export default function SignUp() {
     onSubmit: async (values) => {
       try {
         const response = await registerUser(values);
-        navigate('/sign-in')
+        navigate('/sign-in');
       } catch (error) {
         console.log(error);
       }
