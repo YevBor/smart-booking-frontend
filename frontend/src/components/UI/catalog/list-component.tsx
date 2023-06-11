@@ -24,7 +24,7 @@ const ListComponent: FC<ListPropsInterface> = ({biz}) => {
 					gap:'8px',
 					position: 'relative',
 					zIndex:0,
-					textDecoration:"none"
+					flexDirection: { xs: 'column', sm:'row'}
 			}}>
 				{/*icon*/}
 				<div style={{position:'absolute',right:0,top:0}}>
@@ -69,12 +69,12 @@ const ListComponent: FC<ListPropsInterface> = ({biz}) => {
 };
 
 export default ListComponent;
-const ListItems = styled.li`
+export const ListItems = styled.li`
   display: list-item;
   background-color: #f8f9fc;
   border-radius: 24px;
 `
-const TitleWrapper = styled.div`
+export const TitleWrapper = styled.div`
   min-width: 0;
   display: flex;
   flex: 1;
@@ -85,7 +85,7 @@ const TitleWrapper = styled.div`
   align-self: stretch;
   
 `
-const Title = styled.h2`
+export const Title = styled.h2`
   display: flex;
   flex: 1 1 100%;
   //flex-direction: column;
@@ -95,9 +95,11 @@ const Title = styled.h2`
     flex: 1 1 70%;
   }
 `
-const ContactButtons = styled.div`
-  align-self: flex-end;
+export const ContactButtons = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  @media (min-width: 400px) {
+    flex-direction: column;
+    align-self: flex-end;
+    gap: 10px;
+  }
 `
