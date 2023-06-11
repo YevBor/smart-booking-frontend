@@ -54,8 +54,14 @@ const ListComponent: FC<ListPropsInterface> = ({biz}) => {
 				</TitleWrapper>
 				{/*phone + address*/}
 				<ContactButtons>
-					<Button variant="outlined"><BsTelephoneOutbound/>{biz.phoneNumber}</Button>
-					<Button variant="outlined" color="success"><AiOutlineWhatsApp/> WhatsApp</Button>
+					<Button
+						size='medium'
+						sx={{borderRadius: '50px'}}
+						variant="outlined"><BsTelephoneOutbound/>{biz.phoneNumber}</Button>
+					<Button
+						size='medium'
+						sx={{borderRadius: '50px'}}
+						variant="outlined" color="success"><AiOutlineWhatsApp/> WhatsApp</Button>
 				</ContactButtons>
 			</Paper>
 		</ListItems>
