@@ -3,6 +3,7 @@ import {Paper, Box} from "@mui/material";
 import styled from "styled-components";
 import {BusinessInfo} from "../../../utils/interfaces";
 import {AiFillHeart} from "react-icons/ai";
+import Button from "@mui/material/Button";
 
 
 interface ListPropsInterface {
@@ -22,11 +23,14 @@ const ListComponent: FC<ListPropsInterface> = ({biz}) => {
 					borderRadius: '24px',
 					gap:'8px',
 					position: 'relative',
-					zIndex:0
+					zIndex:0,
+					textDecoration:"none"
 			}}>
+				{/*icon*/}
 				<div style={{position:'absolute',right:0,top:0}}>
 					<AiFillHeart size={30} color="red" style={{margin:'16px'}}/>
 				</div>
+				{/*image*/}
 				<div style={{display:'flex',flexDirection:'column', overflow:'hidden'}}>
 					<a href={`/biz/${biz.slug}`}>
 						<Box
@@ -42,14 +46,17 @@ const ListComponent: FC<ListPropsInterface> = ({biz}) => {
 						/>
 					</a>
 				</div>
-				<div>
-					<h2><a href={`/biz/${biz.slug}`} style={{textDecoration:"none", color:"#384047"}}>{biz.name}</a></h2>
+				{/*title*/}
+				<TitleWrapper>
+					<Title><a href={`/biz/${biz.slug}`} style={{textDecoration:"none", color:"#384047"}}>{biz.name}</a></Title>
 					<div>My Service</div>
-				</div>
-				<div>
-					<div>Phone: {biz.phoneNumber}</div>
 					<div>Address: {biz.address}</div>
-				</div>
+				</TitleWrapper>
+				{/*phone + address*/}
+				<ContactButtons>
+					<Button>Phone: {biz.phoneNumber}</Button>
+					<Button>WhatsApp: {biz.phoneNumber}</Button>
+				</ContactButtons>
 			</Paper>
 		</ListItems>
 	);
@@ -60,4 +67,29 @@ const ListItems = styled.li`
   display: list-item;
   background-color: #f8f9fc;
   border-radius: 24px;
+`
+const TitleWrapper = styled.div`
+  min-width: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  width: auto;
+  align-items: flex-start;
+  align-self: stretch;
+  
+`
+const Title = styled.h2`
+  display: flex;
+  flex: 1 1 100%;
+  //flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  @media (min-width: 700px) {
+    flex: 1 1 70%;
+  }
+`
+const ContactButtons = styled.div`
+  align-self: flex-end;
+  flex-direction: row;
 `
