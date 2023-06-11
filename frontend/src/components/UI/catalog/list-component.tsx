@@ -2,9 +2,9 @@ import React, {FC} from 'react';
 import {Paper, Box} from "@mui/material";
 import styled from "styled-components";
 import {BusinessInfo} from "../../../utils/interfaces";
-import {AiFillHeart} from "react-icons/ai";
+import {AiFillHeart, AiOutlineWhatsApp} from "react-icons/ai";
 import Button from "@mui/material/Button";
-
+import {BsTelephoneOutbound} from "react-icons/bs";
 
 interface ListPropsInterface {
 	biz: BusinessInfo
@@ -54,8 +54,8 @@ const ListComponent: FC<ListPropsInterface> = ({biz}) => {
 				</TitleWrapper>
 				{/*phone + address*/}
 				<ContactButtons>
-					<Button>Phone: {biz.phoneNumber}</Button>
-					<Button>WhatsApp: {biz.phoneNumber}</Button>
+					<Button variant="outlined"><BsTelephoneOutbound/>{biz.phoneNumber}</Button>
+					<Button variant="outlined" color="success"><AiOutlineWhatsApp/> WhatsApp</Button>
 				</ContactButtons>
 			</Paper>
 		</ListItems>
@@ -91,5 +91,7 @@ const Title = styled.h2`
 `
 const ContactButtons = styled.div`
   align-self: flex-end;
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `
