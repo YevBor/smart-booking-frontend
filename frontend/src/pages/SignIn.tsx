@@ -1,14 +1,14 @@
-import { TextField, Box, Container, Card } from '@mui/material';
-import ButtonForm from '../components/modalFormComponents/ButtonForm';
-import Title from '../components/modalFormComponents/Title';
-import { sxCard } from '../styles/modalStyles';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import { signInUser } from '../services/auth/authService';
-import CommonLink from '../components/modalFormComponents/CommonLink';
-import { signInStart, signInSuccess, signInFailure } from '../store/signin';
-import { useDispatch } from 'react-redux';
+import { TextField, Box, Container, Card } from '@mui/material'
+import ButtonForm from '../components/modalFormComponents/ButtonForm'
+import Title from '../components/modalFormComponents/Title'
+import { sxCard } from '../styles/modalStyles'
+import { useFormik } from 'formik'
+import * as yup from 'yup'
+import { useNavigate } from 'react-router-dom'
+import { signInUser } from '../services/auth/authService'
+import CommonLink from '../components/modalFormComponents/CommonLink'
+import { signInStart, signInSuccess, signInFailure } from '../store/signin'
+import { useDispatch } from 'react-redux'
 
 const validationSchema = yup.object({
   email: yup
@@ -19,11 +19,11 @@ const validationSchema = yup.object({
     .string()
     .min(8, 'Password should be of minimum 8 characters length')
     .required('Password is required'),
-});
+})
 
 export default function SignUp() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: {
@@ -32,54 +32,54 @@ export default function SignUp() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values: any) => {
-      dispatch(signInStart());
+      dispatch(signInStart())
       try {
-        const response = await signInUser(values);
-        navigate('/dashboard');
-        dispatch(signInSuccess(response));
+        const response = await signInUser(values)
+        navigate('/dashboard')
+        dispatch(signInSuccess(response))
       } catch (error) {
-        console.log(error);
-        dispatch(signInFailure(error));
+        console.log(error)
+        dispatch(signInFailure(error))
       }
     },
-  });
+  })
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <Card sx={sxCard}>
-        <Title text="Log In" />
-        <Box component="form" noValidate onSubmit={formik.handleSubmit}>
+        <Title text='Log In' />
+        <Box component='form' noValidate onSubmit={formik.handleSubmit}>
           <TextField
-            size="small"
-            margin="normal"
+            size='small'
+            margin='normal'
             required
             fullWidth
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            label='Email Address'
+            name='email'
+            autoComplete='email'
             value={formik.values.email}
             onChange={formik.handleChange}
             error={formik.touched.email && Boolean(formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
           />
           <TextField
-            size="small"
-            margin="normal"
+            size='small'
+            margin='normal'
             required
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
+            name='password'
+            label='Password'
+            type='password'
+            autoComplete='current-password'
             value={formik.values.password}
             onChange={formik.handleChange}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <ButtonForm text="Log In" />
-          <CommonLink url="/forgot" text="forgot password" />
+          <ButtonForm text='Log In' />
+          <CommonLink url='/forgot' text='forgot password' />
         </Box>
       </Card>
     </Container>
-  );
+  )
 }

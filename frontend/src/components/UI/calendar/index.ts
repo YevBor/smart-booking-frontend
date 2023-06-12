@@ -1,4 +1,2 @@
-import Calendar from './calendar';
-export {
-	Calendar
-}
+import Calendar from './calendar'
+export { Calendar }

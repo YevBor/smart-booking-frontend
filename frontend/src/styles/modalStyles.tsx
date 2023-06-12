@@ -3,10 +3,10 @@ export const sxCard = {
   padding: '15px',
   marginTop: 8,
   borderRadius: 5,
-};
+}
 
 export const sxDialog = {
   style: {
     borderRadius: 20,
   },
-};
+}

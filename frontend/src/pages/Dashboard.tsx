@@ -1,12 +1,12 @@
 import React from 'react'
-import {Calendar} from "../components/UI/calendar";
+import { Calendar } from '../components/UI/calendar'
 
 const Dashboard = () => {
   return (
     <>
-        <Calendar/>
+      <Calendar />
     </>
   )
 }
 
-export default Dashboard;
+export default Dashboard
