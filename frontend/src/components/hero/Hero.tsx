@@ -1,11 +1,11 @@
-import React from "react";
-import { Box, Container } from "@mui/material";
-import { HeroWrapper, MainCover } from "./styles";
+import React from 'react'
+import { Box, Container } from '@mui/material'
+import { HeroWrapper, MainCover } from './styles'
 
 const Hero = () => {
   return (
     <MainCover>
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         <HeroWrapper>
           <div>
             <h2>Israel's Top Professionals Services,</h2>
@@ -17,22 +17,22 @@ const Hero = () => {
           </div>
           <div>
             <Box
-              component="img"
+              component='img'
               sx={{
-                maxHeight: { xs: "120px", md: "180px" },
-                width: "auto",
-                objectFit: "cover",
-                borderRadius: "24px",
-                transform: "rotate(8deg)",
+                maxHeight: { xs: '120px', md: '180px' },
+                width: 'auto',
+                objectFit: 'cover',
+                borderRadius: '24px',
+                transform: 'rotate(8deg)',
               }}
-              alt="barbershop"
+              alt='barbershop'
               src={`https://freedesignfile.com/upload/2019/08/Barbershop-vintage-logo-template-vector.jpg`}
             />
           </div>
         </HeroWrapper>
       </Container>
     </MainCover>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

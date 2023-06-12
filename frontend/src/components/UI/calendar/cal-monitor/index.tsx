@@ -1,12 +1,12 @@
-import { FC } from "react";
-import moment from "moment";
+import { FC } from 'react'
+import moment from 'moment'
 import {
   ButtonWrapper,
   DivWrapper,
   TextWrapper,
   TitleWrapper,
   TodayButton,
-} from "./styles";
+} from './styles'
 
 const CalMonitor: FC<WithProps> = ({
   today,
@@ -17,8 +17,8 @@ const CalMonitor: FC<WithProps> = ({
   return (
     <DivWrapper>
       <div>
-        <TitleWrapper>{today.format("MMMM")}</TitleWrapper>
-        <TextWrapper>{today.format("YYYY")}</TextWrapper>
+        <TitleWrapper>{today.format('MMMM')}</TitleWrapper>
+        <TextWrapper>{today.format('YYYY')}</TextWrapper>
       </div>
       <div>
         <ButtonWrapper onClick={prevMonthHandler}> &lt;</ButtonWrapper>
@@ -26,12 +26,12 @@ const CalMonitor: FC<WithProps> = ({
         <ButtonWrapper onClick={nextMonthHandler}> &gt; </ButtonWrapper>
       </div>
     </DivWrapper>
-  );
-};
-export default CalMonitor;
+  )
+}
+export default CalMonitor
 interface WithProps {
-  today: moment.Moment;
-  prevMonthHandler: () => void;
-  todayHandler: () => void;
-  nextMonthHandler: () => void;
+  today: moment.Moment
+  prevMonthHandler: () => void
+  todayHandler: () => void
+  nextMonthHandler: () => void
 }

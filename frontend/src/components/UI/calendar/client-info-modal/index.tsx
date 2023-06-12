@@ -1,11 +1,11 @@
-import React, { FC } from "react";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import moment from "moment";
-import Fade from "@mui/material/Fade";
-import Backdrop from "@mui/material/Backdrop";
-import { OpenedSlots } from "../../../../utils/interfaces";
-import { styleBox } from "./styles";
+import React, { FC } from 'react'
+import Box from '@mui/material/Box'
+import Modal from '@mui/material/Modal'
+import moment from 'moment'
+import Fade from '@mui/material/Fade'
+import Backdrop from '@mui/material/Backdrop'
+import { OpenedSlots } from '../../../../utils/interfaces'
+import { styleBox } from './styles'
 
 const ClientInfoModal: FC<ClientInfoModalInterface> = ({
   openModal,
@@ -29,34 +29,34 @@ const ClientInfoModal: FC<ClientInfoModalInterface> = ({
           <Box sx={styleBox}>
             {selectedSlot?.bookingBy?.user.email && (
               <div>
-                User Mail:{" "}
+                User Mail:{' '}
                 <strong>{selectedSlot?.bookingBy?.user.email}</strong>
               </div>
             )}
 
             <div>
-              Start Time:{" "}
+              Start Time:{' '}
               <strong>
-                {moment(selectedSlot.startTime).format("MMMM Do YYYY, HH:mm")}
+                {moment(selectedSlot.startTime).format('MMMM Do YYYY, HH:mm')}
               </strong>
             </div>
 
             <div>
-              End Time:{" "}
+              End Time:{' '}
               <strong>
-                {moment(selectedSlot.endTime).format("MMMM Do YYYY, HH:mm")}
+                {moment(selectedSlot.endTime).format('MMMM Do YYYY, HH:mm')}
               </strong>
             </div>
           </Box>
         </Fade>
       </Modal>
     )
-  );
-};
+  )
+}
 
-export default ClientInfoModal;
+export default ClientInfoModal
 interface ClientInfoModalInterface {
-  openModal: boolean;
-  closeModal: () => void;
-  selectedSlot: OpenedSlots;
+  openModal: boolean
+  closeModal: () => void
+  selectedSlot: OpenedSlots
 }

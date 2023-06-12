@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const MainCover = styled.div`
   height: 300px;
@@ -10,10 +10,10 @@ export const MainCover = styled.div`
   @media (min-width: 700px) {
     border-radius: 0 0 53% 47%/0 0 14% 7%;
   }
-`;
+`
 export const HeroWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px 16px 24px;
-`;
+`

@@ -1,111 +1,107 @@
-import { Dayjs } from "dayjs";
-import { Box, Button, TextField, Typography } from "@mui/material";
-import {
-  DateField,
-  LocalizationProvider,
-  TimeField,
-} from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useState } from "react";
-import "dayjs/locale/he";
+import { Dayjs } from 'dayjs'
+import { Box, Button, TextField, Typography } from '@mui/material'
+import { DateField, LocalizationProvider, TimeField } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { useState } from 'react'
+import 'dayjs/locale/he'
 
 interface HoursForm {
-  openingHours: any;
-  closingHours: any;
-  lunchDuration: string;
-  timePerClient: string;
-  startDate: Dayjs | null;
+  openingHours: any
+  closingHours: any
+  lunchDuration: string
+  timePerClient: string
+  startDate: Dayjs | null
 }
 
 export const WorkingHours = ({ selectedDay }: any) => {
   const [hoursForm, setHoursForm] = useState<HoursForm>({
     openingHours: null,
     closingHours: null,
-    lunchDuration: "",
-    timePerClient: "",
+    lunchDuration: '',
+    timePerClient: '',
     startDate: null,
-  });
+  })
   const handleSubmit = async () => {
     const postHours = {
-      openingHours: hoursForm.openingHours?.format("HH:mm"),
-      closingHours: hoursForm.closingHours?.format("HH:mm"),
+      openingHours: hoursForm.openingHours?.format('HH:mm'),
+      closingHours: hoursForm.closingHours?.format('HH:mm'),
       lunchDuration: hoursForm.lunchDuration,
       timePerClient: hoursForm.timePerClient,
-      startDate: selectedDay.format("YYYY-MM-DD"),
-    };
-    const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:4000/slots/daily", {
-      method: "POST",
+      startDate: selectedDay.format('YYYY-MM-DD'),
+    }
+    const token = localStorage.getItem('token')
+    const response = await fetch('http://localhost:4000/slots/daily', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(postHours),
-    });
+    })
 
     if (!response.ok) {
-      console.log("error");
+      console.log('error')
     } else {
-      const data = await response.json();
-      console.log(data);
+      const data = await response.json()
+      console.log(data)
     }
-  };
+  }
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="he">
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='he'>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
           width: 400,
           height: 350,
-          m: "auto",
+          m: 'auto',
         }}
       >
-        <Typography variant="h3">Working Hours</Typography>
+        <Typography variant='h3'>Working Hours</Typography>
         <TimeField
-          size="small"
-          label="Opening Hours"
+          size='small'
+          label='Opening Hours'
           value={hoursForm.openingHours}
-          format="HH:mm"
-          onChange={(newValue) =>
+          format='HH:mm'
+          onChange={newValue =>
             setHoursForm({ ...hoursForm, openingHours: newValue })
           }
         ></TimeField>
         <TimeField
-          size="small"
-          label="Closing Hours"
+          size='small'
+          label='Closing Hours'
           value={hoursForm.closingHours}
-          onChange={(newValue) =>
+          onChange={newValue =>
             setHoursForm({ ...hoursForm, closingHours: newValue })
           }
         ></TimeField>
         <TextField
-          size="small"
-          label="Lunch Duration"
+          size='small'
+          label='Lunch Duration'
           value={hoursForm.lunchDuration}
-          onChange={(newValue) =>
+          onChange={newValue =>
             setHoursForm({ ...hoursForm, lunchDuration: newValue.target.value })
           }
         ></TextField>
         <TextField
-          size="small"
-          label="Time Per Client"
+          size='small'
+          label='Time Per Client'
           value={hoursForm.timePerClient}
-          onChange={(newValue) =>
+          onChange={newValue =>
             setHoursForm({ ...hoursForm, timePerClient: newValue.target.value })
           }
         ></TextField>
         <DateField
-          size="small"
+          size='small'
           value={selectedDay}
-          onChange={(newValue) =>
+          onChange={newValue =>
             setHoursForm({ ...hoursForm, startDate: newValue })
           }
         />
         <Button onClick={handleSubmit}>Submit</Button>
       </Box>
     </LocalizationProvider>
-  );
-};
+  )
+}

@@ -1,10 +1,10 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import { WorkingHours } from "../../../workingHours/WorkingHours.tsx";
-import { FC } from "react";
-import moment from "moment/moment";
-import { styleBoxFormModal } from "./styles.ts";
+import * as React from 'react'
+import Box from '@mui/material/Box'
+import Modal from '@mui/material/Modal'
+import { WorkingHours } from '../../../workingHours/WorkingHours.tsx'
+import { FC } from 'react'
+import moment from 'moment/moment'
+import { styleBoxFormModal } from './styles.ts'
 
 const FormModal: FC<FormModalProps> = ({ open, handleClose, selectedDay }) => {
   return (
@@ -13,12 +13,12 @@ const FormModal: FC<FormModalProps> = ({ open, handleClose, selectedDay }) => {
         <WorkingHours selectedDay={selectedDay} />
       </Box>
     </Modal>
-  );
-};
-export default FormModal;
+  )
+}
+export default FormModal
 
 interface FormModalProps {
-  open: boolean;
-  handleClose: () => void;
-  selectedDay: moment.Moment | null;
+  open: boolean
+  handleClose: () => void
+  selectedDay: moment.Moment | null
 }

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const CalendarWrapper = styled.div`
   margin-top: 15px;
@@ -10,4 +10,4 @@ export const CalendarWrapper = styled.div`
   border-right: 1px solid #464648;
   border-bottom: 2px solid #464648;
   box-shadow: 0 0 0 1px #1a1a1a, 0 8px 20px 6px #888;
-`;
+`
