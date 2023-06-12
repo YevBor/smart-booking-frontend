@@ -1,4 +1,4 @@
-import { Typography, Link } from '@mui/material';
+import { Typography, Link } from "@mui/material";
 
 type Approps = {
   url: string;

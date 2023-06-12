@@ -1,7 +1,7 @@
-import '../../../styles/daily.css';
-import { Button } from '@mui/material';
-import dayjs from 'dayjs';
-import useSlots from '../../../hooks/useSlots';
+import "../../../styles/daily.css";
+import { Button } from "@mui/material";
+import dayjs from "dayjs";
+import useSlots from "../../../hooks/useSlots";
 
 export const Daily = () => {
   const { data, handleClick, slots, active, isLoading } = useSlots();
@@ -9,7 +9,7 @@ export const Daily = () => {
   return isLoading ? (
     <p>Loading...</p>
   ) : (
-    <div style={{ width: '40%' }}>
+    <div style={{ width: "40%" }}>
       <div className="weekly">
         {data.map((innerItem: any, outerIndex: any) => (
           <div key={outerIndex}>
@@ -20,16 +20,16 @@ export const Daily = () => {
               </div>
             </div>
 
-            <ul className="item_time" >
+            <ul className="item_time">
               {innerItem.slots.map((item: any, innerIndex: any) => (
                 <li
                   key={item.id}
                   onClick={() => handleClick(item.id)}
                   className={`item_time-el ${
-                    active === item.id && 'item_time-el__active'
+                    active === item.id && "item_time-el__active"
                   }`}
                 >
-                  {dayjs(item.startTime).format('HH:mm')}
+                  {dayjs(item.startTime).format("HH:mm")}
                 </li>
               ))}
             </ul>

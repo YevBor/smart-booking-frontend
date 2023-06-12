@@ -1,18 +1,18 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    ar: [],
-}
+  ar: [],
+};
 
 const dailyHoursSlice = createSlice({
-    name: 'dailyHours',
-    initialState,
-    reducers: {
-        setDailyHours: (state, action) => {
-            state.ar = action.payload;
-        },  
-    }
-})
+  name: "dailyHours",
+  initialState,
+  reducers: {
+    setDailyHours: (state, action) => {
+      state.ar = action.payload;
+    },
+  },
+});
 
-export const {setDailyHours} = dailyHoursSlice.actions;
+export const { setDailyHours } = dailyHoursSlice.actions;
 export default dailyHoursSlice.reducer;

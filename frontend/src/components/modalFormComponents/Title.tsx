@@ -1,13 +1,13 @@
-import {Typography} from "@mui/material"
-
+import { Typography } from "@mui/material";
 
 type Approps = {
-  text: string,
-}
+  text: string;
+};
 
-export default function Title({text}: Approps){
+export default function Title({ text }: Approps) {
   return (
     <Typography component="h1" variant="h5" align="center">
       {text}
-    </Typography>)
+    </Typography>
+  );
 }

@@ -1,4 +1,4 @@
-import {OpenedSlots} from './slots';
-import {BusinessInfo} from './business';
+import { OpenedSlots } from "./slots";
+import { BusinessInfo } from "./business";
 
-export type {OpenedSlots,BusinessInfo}
+export type { OpenedSlots, BusinessInfo };

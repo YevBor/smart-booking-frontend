@@ -1,21 +1,21 @@
-import { TextField, Box, Container, Card } from '@mui/material';
-import ButtonForm from '../components/modalFormComponents/ButtonForm';
-import Title from '../components/modalFormComponents/Title';
-import { sxCard } from '../styles/modalStyles';
-import { useFormik } from 'formik';
-import { registerUser } from '../services/auth/authService';
-import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
+import { TextField, Box, Container, Card } from "@mui/material";
+import ButtonForm from "../components/modalFormComponents/ButtonForm";
+import Title from "../components/modalFormComponents/Title";
+import { sxCard } from "../styles/modalStyles";
+import { useFormik } from "formik";
+import { registerUser } from "../services/auth/authService";
+import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object({
   email: yup
     .string()
-    .email('Enter a valid email')
-    .required('Email is required'),
+    .email("Enter a valid email")
+    .required("Email is required"),
   password: yup
     .string()
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
+    .min(8, "Password should be of minimum 8 characters length")
+    .required("Password is required"),
 });
 
 export default function SignUp() {
@@ -23,14 +23,14 @@ export default function SignUp() {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
         const response = await registerUser(values);
-        navigate('/sign-in');
+        navigate("/sign-in");
       } catch (error) {
         console.log(error);
       }

@@ -1,24 +1,24 @@
-import { TextField, Box, Container, Card } from '@mui/material';
-import ButtonForm from '../components/modalFormComponents/ButtonForm';
-import Title from '../components/modalFormComponents/Title';
-import { sxCard } from '../styles/modalStyles';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import { signInUser } from '../services/auth/authService';
-import CommonLink from '../components/modalFormComponents/CommonLink';
-import { signInStart, signInSuccess, signInFailure } from '../store/signin';
-import { useDispatch } from 'react-redux';
+import { TextField, Box, Container, Card } from "@mui/material";
+import ButtonForm from "../components/modalFormComponents/ButtonForm";
+import Title from "../components/modalFormComponents/Title";
+import { sxCard } from "../styles/modalStyles";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { signInUser } from "../services/auth/authService";
+import CommonLink from "../components/modalFormComponents/CommonLink";
+import { signInStart, signInSuccess, signInFailure } from "../store/signin";
+import { useDispatch } from "react-redux";
 
 const validationSchema = yup.object({
   email: yup
     .string()
-    .email('Enter a valid email')
-    .required('Email is required'),
+    .email("Enter a valid email")
+    .required("Email is required"),
   password: yup
     .string()
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
+    .min(8, "Password should be of minimum 8 characters length")
+    .required("Password is required"),
 });
 
 export default function SignUp() {
@@ -27,15 +27,15 @@ export default function SignUp() {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values: any) => {
       dispatch(signInStart());
       try {
         const response = await signInUser(values);
-        navigate('/dashboard');
+        navigate("/dashboard");
         dispatch(signInSuccess(response));
       } catch (error) {
         console.log(error);

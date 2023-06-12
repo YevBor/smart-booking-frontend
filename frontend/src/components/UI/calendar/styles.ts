@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CalendarWrapper = styled.div`
-  margin-top: 15px; 
+  margin-top: 15px;
   margin-bottom: 70px;
   border-radius: 8px;
   overflow: hidden;
@@ -9,5 +9,5 @@ export const CalendarWrapper = styled.div`
   border-left: 1px solid #464648;
   border-right: 1px solid #464648;
   border-bottom: 2px solid #464648;
-  box-shadow: 0 0 0 1px #1A1A1A, 0 8px 20px 6px #888;
-`
+  box-shadow: 0 0 0 1px #1a1a1a, 0 8px 20px 6px #888;
+`;

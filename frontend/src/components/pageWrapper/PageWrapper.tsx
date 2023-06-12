@@ -1,7 +1,6 @@
-import { Header } from '../header/Header';
+import { Header } from "../header/Header";
 
-import { ReactNode } from 'react';
-
+import { ReactNode } from "react";
 
 interface PageWrapperProps {
   children: ReactNode;

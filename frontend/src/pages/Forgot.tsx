@@ -1,7 +1,5 @@
 const Forgot = () => {
-  return (
-    <div>Forgot</div>
-  )
-}
+  return <div>Forgot</div>;
+};
 
-export default Forgot
+export default Forgot;
