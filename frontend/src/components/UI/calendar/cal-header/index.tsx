@@ -1,8 +1,8 @@
-import { FC } from 'react'
-import { DivWrapper } from './styles'
+import { FC } from 'react';
+import { DivWrapper } from './styles';
 
 const CalHeader: FC = () => {
-  return <DivWrapper></DivWrapper>
-}
+    return <DivWrapper></DivWrapper>;
+};
 
-export default CalHeader
+export default CalHeader;

@@ -1,17 +1,17 @@
-import { Header } from '../header/Header'
+import { Header } from '../header/Header';
 
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 
 interface PageWrapperProps {
-  children: ReactNode
+    children: ReactNode;
 }
 
 export const PageWrapper = ({ children }: PageWrapperProps) => {
-  return (
-    <>
-      <Header />
+    return (
+        <>
+            <Header />
 
-      {children}
-    </>
-  )
-}
+            {children}
+        </>
+    );
+};

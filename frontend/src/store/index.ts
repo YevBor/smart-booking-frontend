@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 
-import signInSlice from './signin'
-import dailyHoursSlice from './dailyHours'
+import signInSlice from './signin';
+import dailyHoursSlice from './dailyHours';
 
 const store = configureStore({
-  reducer: { signin: signInSlice, dailyHours: dailyHoursSlice },
-})
+    reducer: { signin: signInSlice, dailyHours: dailyHoursSlice },
+});
 
-export default store
+export default store;

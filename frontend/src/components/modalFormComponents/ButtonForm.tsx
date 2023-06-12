@@ -1,18 +1,18 @@
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
 
 type Approps = {
-  text: string
-}
+    text: string;
+};
 
 const sxButton = {
-  mt: 2,
-  mb: 1,
-}
+    mt: 2,
+    mb: 1,
+};
 
 export default function ButtonForm({ text }: Approps) {
-  return (
-    <Button type='submit' fullWidth variant='contained' sx={sxButton}>
-      {text}
-    </Button>
-  )
+    return (
+        <Button type='submit' fullWidth variant='contained' sx={sxButton}>
+            {text}
+        </Button>
+    );
 }
