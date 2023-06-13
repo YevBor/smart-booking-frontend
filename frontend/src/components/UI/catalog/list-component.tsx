@@ -14,7 +14,6 @@ const ListComponent: FC<ListPropsInterface> = ({ biz }) => {
         <ListItems>
             <Paper
                 sx={{
-                    mt: '16px',
                     p: '8px',
                     background: '#f8f9fc',
                     alignItems: 'flex-start',
