@@ -5,57 +5,56 @@ import ListComponent from '../components/UI/catalog/list-component';
 import { BusinessInfo } from '../utils/interfaces';
 import Hero from '../components/hero/Hero';
 import styled from 'styled-components';
+
 const Root = () => {
-    const [business, setBusiness] = useState<any>(null);
+    const [business, setBusiness] = useState<BusinessInfo[]>([]);
+
     useEffect(() => {
         const fetcher = async () => {
-            const response = await requestBusiness();
-            setBusiness(response);
+            try {
+                const response = await requestBusiness();
+                setBusiness(response);
+            } catch (error) {
+                console.error('Failed to fetch business:', error);
+            }
         };
         fetcher().then();
     }, []);
+
     return (
-        business && (
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                    width: '100vw',
-                    overflow: 'hidden',
-                }}
-            >
-                <Hero />
-                <Container maxWidth='lg'>
-                    <Ul style={{ listStyle: 'none' }}>
-                        {business.map((biz: BusinessInfo) => (
-                            <ListComponent biz={biz} key={biz.id} />
-                        ))}
-                    </Ul>
-                </Container>
-            </Box>
-        )
+        <>
+            {business && business.length > 0 && (
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                        width: '100%',
+                        overflow: 'hidden',
+                    }}
+                >
+                    <Hero />
+                    <Container maxWidth='lg'>
+                        <Ul>
+                            {business.map((biz: BusinessInfo) => (
+                                <ListComponent biz={biz} key={biz.id} />
+                            ))}
+                        </Ul>
+                    </Container>
+                </Box>
+            )}
+        </>
     );
 };
 
 export default Root;
+
 export const Ul = styled.ul`
-    display: inline-flex;
+    list-style: none;
     gap: 16px;
-
-    animation: 50000ms linear 0s infinite normal none running slide;
-
-    &:hover {
-        animation-play-state: paused;
-    }
-
-    @keyframes slide {
-        0% {
-            transform: translateX(1500px);
-        }
-        100% {
-            transform: translateX(-1500px);
-        }
-    }
+    width: 100%;
+    height: auto;
+    align-items: flex-start;
+    flex-shrink: 0;
 `;

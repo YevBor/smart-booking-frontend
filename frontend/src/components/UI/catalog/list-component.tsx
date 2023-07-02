@@ -40,6 +40,7 @@ const ListComponent: FC<ListPropsInterface> = ({ biz }) => {
                         display: 'flex',
                         flexDirection: 'column',
                         overflow: 'hidden',
+                        minWidth: '120px',
                     }}
                 >
                     <a href={`/biz/${biz.slug}`}>
@@ -108,11 +109,11 @@ export const TitleWrapper = styled.div`
     width: auto;
     align-items: flex-start;
     align-self: stretch;
+    flex-shrink: 0;
 `;
 export const Title = styled.h2`
     display: flex;
-    flex: 1 1 100%;
-    //flex-direction: column;
+    flex: 1 0 auto;
     justify-content: flex-start;
     width: 100%;
     @media (min-width: 700px) {
@@ -121,6 +122,7 @@ export const Title = styled.h2`
 `;
 export const ContactButtons = styled.div`
     display: flex;
+    flex-shrink: 0;
     @media (min-width: 400px) {
         flex-direction: column;
         align-self: flex-end;
